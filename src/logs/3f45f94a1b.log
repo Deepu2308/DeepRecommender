@@ -1,0 +1,61 @@
+root - INFO - 
+net       = recommender(N_USERS, N_MOVIES)
+criterion = torch.nn.MSELoss()
+optimizer = torch.optim.Adam(net.parameters())
+
+root - INFO - max_epochs : 100
+root - INFO - start_time : 2021-03-11 12:37:55.366880
+root - INFO - use_cuda  : True
+root - INFO - epoch:     0 batch:      0 		 train_Loss: 16.2575 test_loss: 16.2575
+root - INFO - epoch:     0 batch:      5 		 train_Loss: 16.0389 test_loss: 15.8105
+root - INFO - epoch:     0 batch:     10 		 train_Loss: 16.1679 test_loss: 16.0427
+root - INFO - epoch:     0 batch:     15 		 train_Loss: 16.0037 test_loss: 15.9770
+root - INFO - epoch:     0 batch:     20 		 train_Loss: 15.8969 test_loss: 15.8278
+root - INFO - epoch:     0 batch:     25 		 train_Loss: 15.7491 test_loss: 15.4904
+root - INFO - epoch:     0 batch:     30 		 train_Loss: 15.5988 test_loss: 15.2319
+root - INFO - epoch:     0 batch:     35 		 train_Loss: 15.4531 test_loss: 15.2003
+root - INFO - epoch:     0 batch:     40 		 train_Loss: 15.3319 test_loss: 15.1052
+root - INFO - epoch:     0 batch:     45 		 train_Loss: 15.2074 test_loss: 15.0173
+root - INFO - epoch:     0 batch:     50 		 train_Loss: 15.0458 test_loss: 14.8456
+root - INFO - epoch:     0 batch:     55 		 train_Loss: 14.9075 test_loss: 14.7171
+root - INFO - epoch:     0 batch:     60 		 train_Loss: 14.7849 test_loss: 14.7065
+root - INFO - epoch:     0 batch:     65 		 train_Loss: 14.6729 test_loss: 14.6768
+root - INFO - epoch:     0 batch:     70 		 train_Loss: 14.5431 test_loss: 14.5879
+root - INFO - epoch:     0 batch:     75 		 train_Loss: 14.4386 test_loss: 14.4350
+root - INFO - epoch:     0 batch:     80 		 train_Loss: 14.3129 test_loss: 14.3275
+root - INFO - epoch:     0 batch:     85 		 train_Loss: 14.2046 test_loss: 14.2138
+root - INFO - epoch:     0 batch:     90 		 train_Loss: 14.0685 test_loss: 14.0355
+root - INFO - epoch:     0 batch:     95 		 train_Loss: 13.9234 test_loss: 13.9004
+root - INFO - epoch:     0 batch:    100 		 train_Loss: 13.8049 test_loss: 13.8102
+root - INFO - epoch:     0 batch:    105 		 train_Loss: 13.6843 test_loss: 13.6672
+root - INFO - epoch:     0 batch:    110 		 train_Loss: 13.5632 test_loss: 13.5480
+root - INFO - epoch:     0 batch:    115 		 train_Loss: 13.4454 test_loss: 13.4653
+root - INFO - epoch:     0 batch:    120 		 train_Loss: 13.3248 test_loss: 13.3276
+root - INFO - epoch:     0 batch:    125 		 train_Loss: 13.2007 test_loss: 13.1719
+root - INFO - epoch:     0 batch:    130 		 train_Loss: 13.0615 test_loss: 13.0123
+root - INFO - epoch:     0 batch:    135 		 train_Loss: 12.9537 test_loss: 12.8703
+root - INFO - epoch:     0 batch:    140 		 train_Loss: 12.8269 test_loss: 12.7677
+root - INFO - epoch:     0 batch:    145 		 train_Loss: 12.7263 test_loss: 12.6588
+root - INFO - epoch:     0 batch:    150 		 train_Loss: 12.6034 test_loss: 12.5549
+root - INFO - epoch:     0 batch:    155 		 train_Loss: 12.4946 test_loss: 12.4486
+root - INFO - epoch:     0 batch:    160 		 train_Loss: 12.3815 test_loss: 12.3393
+root - INFO - epoch:     0 batch:    165 		 train_Loss: 12.2774 test_loss: 12.2359
+root - INFO - epoch:     0 batch:    170 		 train_Loss: 12.1727 test_loss: 12.1190
+root - INFO - epoch:     0 batch:    175 		 train_Loss: 12.0654 test_loss: 12.0197
+root - INFO - epoch:     0 batch:    180 		 train_Loss: 11.9616 test_loss: 11.9126
+root - INFO - epoch:     0 batch:    185 		 train_Loss: 11.8505 test_loss: 11.7873
+root - INFO - epoch:     0 batch:    190 		 train_Loss: 11.7464 test_loss: 11.6984
+root - INFO - epoch:     0 batch:    195 		 train_Loss: 11.6428 test_loss: 11.6148
+root - INFO - epoch:     0 batch:    200 		 train_Loss: 11.5516 test_loss: 11.5244
+root - INFO - epoch:     0 batch:    205 		 train_Loss: 11.4647 test_loss: 11.4473
+root - INFO - epoch:     0 batch:    210 		 train_Loss: 11.3746 test_loss: 11.3511
+root - INFO - epoch:     0 batch:    215 		 train_Loss: 11.2958 test_loss: 11.2816
+root - INFO - epoch:     0 batch:    220 		 train_Loss: 11.2087 test_loss: 11.2100
+root - INFO - epoch:     0 batch:    225 		 train_Loss: 11.1227 test_loss: 11.1244
+root - INFO - epoch:     0 batch:    230 		 train_Loss: 11.0346 test_loss: 11.0394
+root - INFO - epoch:     0 batch:    235 		 train_Loss: 10.9506 test_loss: 10.9607
+root - INFO - epoch:     0 batch:    240 		 train_Loss: 10.8668 test_loss: 10.8689
+root - INFO - epoch:     0 batch:    245 		 train_Loss: 10.7878 test_loss: 10.7897
+root - INFO - epoch:     0 batch:    250 		 train_Loss: 10.7144 test_loss: 10.7152
+root - INFO - epoch:     0 batch:    255 		 train_Loss: 10.6360 test_loss: 10.6359
+root - INFO - epoch:     0 batch:    260 		 train_Loss: 10.5631 test_loss: 10.5552

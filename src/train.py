@@ -27,6 +27,7 @@ BUFFER_SIZE       = 500
 model_id          = str(binascii.b2a_hex(os.urandom(5)))[2:-1]
 
 
+print("Loading dataset")
 #load train and test
 train_dataset = Ratings('train', use_cuda)
 test_dataset  = Ratings('test', use_cuda)
@@ -107,7 +108,7 @@ for epoch in range(N_EPOCHS):
             
             mean_train_mse = np.mean(train_mse)
             mean_test_mse  = np.mean(test_mse)
-            msg = "epoch: {:5d} batch: {:6d} \t\t train_Loss: {:4.4f} test_loss: {:4.4f}".format(
+            msg = "epoch: {:5d} batch: {:6d} \t train_Loss: {:4.4f} test_loss: {:4.4f}".format(
                     epoch,i_batch,mean_train_mse,mean_test_mse )
     
             print(msg)
