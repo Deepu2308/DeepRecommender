@@ -65,7 +65,7 @@ logging.basicConfig(filename=f'src/logs/{model_id}.log',
 logging.info(gen_net)
 logging.info(f"max_epochs : {N_EPOCHS}")
 logging.info(f"start_time : {datetime.now()}")
-logging.info(f"use_cuda  : {use_cuda}")
+logging.info(f"use_cuda  : {use_cuda}\n\n")
 
 #create model
 exec(gen_net)
@@ -73,6 +73,7 @@ net = net.to(device)
 
 test_mse  = deque(maxlen=BUFFER_SIZE)
 train_mse = deque(maxlen=BUFFER_SIZE)
+best      = np.inf
 
 for epoch in range(N_EPOCHS):
     
@@ -108,8 +109,22 @@ for epoch in range(N_EPOCHS):
             
             mean_train_mse = np.mean(train_mse)
             mean_test_mse  = np.mean(test_mse)
-            msg = "epoch: {:5d} batch: {:6d} \t train_Loss: {:4.4f} test_loss: {:4.4f}".format(
-                    epoch,i_batch,mean_train_mse,mean_test_mse )
+            msg = "epoch: {:5d} batch: {:6d} \t train_Loss: {:4.4f} test_loss: {:4.4f} best_loss: {:4.4f}".format(
+                    epoch,i_batch,mean_train_mse,mean_test_mse, best)
+            
+            #save model
+            if best > mean_test_mse :
+                torch.save({
+                        'epoch': epoch,
+                        'model_state_dict': net.state_dict(),
+                        'optimizer_state_dict': optimizer.state_dict(),
+                        'loss': loss,
+            
+                },
+                f"src/files/models/{model_id}.pkl")
+                
+                msg += ' \t Saving Model.'
+                best = mean_test_mse
     
             print(msg)
             logging.info(msg)
