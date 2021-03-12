@@ -62,6 +62,7 @@ class Ratings(Dataset):
 if __name__ == '__main__':
     
     #read data
+    print("Reading data")
     p_input = 'input/ratings.csv'
     ratings = pd.read_csv(p_input)    
     #ratings = ratings.sample(1000)
@@ -83,12 +84,19 @@ if __name__ == '__main__':
     #save encoder objects
     joblib.dump(user_enc,'src/files/user_enc.pkl')
     joblib.dump(movie_enc,'src/files/movie_enc.pkl')
-    
+    print("Encoder objects saved.")
+
     #train test split
-    train,test= train_test_split(ratings)
+    print("Preparing train test split")
+    train,test= train_test_split(ratings,
+                                 stratify = ratings.rating,
+                                 test_size = .1,
+                                 random_state = 797)
+    
     train.to_csv('input/splits/train.csv')
     test.to_csv('input/splits/test.csv')
-    
+    print("Train and Test set saved.")
+
     #example usage for Ratings class
     train_dataset = Ratings(file  = 'train')
     
@@ -99,9 +107,10 @@ if __name__ == '__main__':
                                num_workers=0
                               )
     
-    
+    print("Sample batches")
     for i_batch, sample_batched in enumerate(train_loader):
         print(i_batch, sample_batched['users'].size(),
               sample_batched['movies'].size(),
               sample_batched['ratings'].size())
-    
+        if i_batch % 10 == 0:
+            break
