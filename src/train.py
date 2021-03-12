@@ -21,11 +21,15 @@ import logging
 use_cuda = torch.cuda.is_available()
 device = torch.device("cuda" if use_cuda else "cpu")
 
+#script variables
 N_EPOCHS          = 100
 VALIDATION_WAIT   = 5
 BUFFER_SIZE       = 500
 model_id          = str(binascii.b2a_hex(os.urandom(5)))[2:-1]
 
+#model hyper parameters
+learning_rate, weight_decay = .01,0
+train_batch_size, test_batch_size = 200, 1000
 
 print("Loading dataset")
 #load train and test
@@ -35,23 +39,26 @@ test_dataset  = Ratings('test', use_cuda)
 #get data loaders
 train_loader  = DataLoader(
                                train_dataset, 
-                               batch_size=200,
+                               batch_size=train_batch_size,
                                shuffle=True,
                                num_workers=0
                               )
 test_loader   = DataLoader(
                                test_dataset, 
-                               batch_size=1000,
+                               batch_size=test_batch_size,
                                shuffle=True,
                                num_workers=0
                               )
 test_gen     = iter(test_loader)
 
 #declare model
-gen_net   = """
+print("Creating Network")
+gen_net   = f"""
 net       = recommender(N_USERS, N_MOVIES)
 criterion = torch.nn.MSELoss()
-optimizer = torch.optim.Adam(net.parameters())
+optimizer = torch.optim.Adam(net.parameters(),
+                             lr= {learning_rate},
+                             weight_decay = {weight_decay})
 """
 
 
@@ -62,7 +69,9 @@ logging.basicConfig(filename=f'src/logs/{model_id}.log',
                     format='%(name)s - %(levelname)s - %(message)s',
                     level=logging.INFO)
 
-logging.info(gen_net)
+logging.info(gen_net + "\n\n")
+logging.info(f"learning_rate : {learning_rate}")
+logging.info(f"weight_decay : {weight_decay}")
 logging.info(f"max_epochs : {N_EPOCHS}")
 logging.info(f"start_time : {datetime.now()}")
 logging.info(f"use_cuda  : {use_cuda}\n\n")
@@ -70,6 +79,7 @@ logging.info(f"use_cuda  : {use_cuda}\n\n")
 #create model
 exec(gen_net)
 net = net.to(device)
+logging.info(str(net) + "\n\n")
 
 test_mse  = deque(maxlen=BUFFER_SIZE)
 train_mse = deque(maxlen=BUFFER_SIZE)
